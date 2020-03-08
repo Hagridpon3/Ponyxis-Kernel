@@ -1,6 +1,5 @@
-# ponyxis-kernel
-Kernel for PJRC Teensy 4.0 write in Adafruit CircuitPython
+# Ponyxis-kernel
+Kernel for PJRC Teensy 4.0 write in C
 
-#Links
-- Adafruit CircuitPython https://github.com/adafruit/circuitpython
+# Links
 - PJRC Teensy 4.0 https://www.pjrc.com/store/teensy40.html
