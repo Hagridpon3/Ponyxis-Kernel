@@ -143,6 +143,7 @@ void setup() {
 
 	displayPrintf(0, "Ponyxis kernel v0.2.0.0");
 	displayPrintf(1, ">");
+
 }
 
 void loop() {

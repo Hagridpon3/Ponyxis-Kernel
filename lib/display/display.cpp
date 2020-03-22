@@ -29,8 +29,21 @@ NexText lcd_lines[18] = {
     line15, line16, line17
 };
 
-void displaSaveLines(){
+char display_lines[17][60] = {0};
 
+void displaySaveLines(){
+    for(uint8_t i = 0; i <=17; i++){
+        lcd_lines[i].getText(display_lines[i], 60);
+    }
+}
+
+void displayLoadLines(){
+    char temp[20];    
+    for(uint8_t i = 0; i <=17; i++){
+        sprintf(temp, "line%d.txt=\"\"", i);
+        sendCommand(temp);
+        lcd_lines[i].setText(display_lines[i]);
+    }
 }
 
 void displayPrintf(uint8_t id, char *fmt, ...){
