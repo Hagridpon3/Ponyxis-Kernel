@@ -52,10 +52,8 @@ void displayScroolUp(){
 
     for(uint8_t i = 0; i <=16; i++){
         lcd_lines[i + 1].getText(actual_line, 60);
-        Serial.printf("read[%d]:   %s\n",i + 1, actual_line);
         sprintf(clear_line, "line%d.txt=\"\"", i);
         sendCommand(clear_line);
-        Serial.printf("write[%d]:  %s\n",i, actual_line);
         lcd_lines[i].setText(actual_line);
         memset(actual_line, 0, 60);
     }
