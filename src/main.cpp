@@ -10,15 +10,14 @@ uint8_t _pos;
 
 SerialFlashFile file;
 
-char buff[60];
 void setup() {
 	nexInit();
 	SerialFlash.begin(6);
 	
 	registrButtons();
 
-	displayPrintf(0, "Ponyxis kernel v0.2.0.0");
-	displayPrintf(1, ">");
+	displayPrintf(0, "Ponyxis kernel v0.3.0.0");
+	displayPrintf(1,  ">");
 }
 
 void loop() {

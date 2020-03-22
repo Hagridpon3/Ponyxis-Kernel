@@ -1,6 +1,5 @@
 #include "display.h"
-
-#include "Nextion.h"
+#include <string.h>  
 #include <stdarg.h>
 
 NexText line0 = NexText(0, 1, "line0");
@@ -46,6 +45,24 @@ void displayLoadLines(){
     }
 }
 
+void displayScroolUp(){
+
+    char actual_line[60] = {0};
+    char clear_line[20];
+
+    for(uint8_t i = 0; i <=16; i++){
+        lcd_lines[i + 1].getText(actual_line, 60);
+        Serial.printf("read[%d]:   %s\n",i + 1, actual_line);
+        sprintf(clear_line, "line%d.txt=\"\"", i);
+        sendCommand(clear_line);
+        Serial.printf("write[%d]:  %s\n",i, actual_line);
+        lcd_lines[i].setText(actual_line);
+        memset(actual_line, 0, 60);
+    }
+
+    sendCommand("line17.txt=\"\"");
+}
+
 void displayPrintf(uint8_t id, char *fmt, ...){
     char text[60];
     va_list va;
@@ -54,4 +71,7 @@ void displayPrintf(uint8_t id, char *fmt, ...){
     va_end(va);
 
     lcd_lines[id].setText(text);
+    if(id == 17){
+        displayScroolUp();
+    }
 }
