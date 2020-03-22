@@ -1,4 +1,5 @@
 #include "keyboard.h"
+#include "display.h"
 
 NexButton btn_1   = NexButton(1, 3, "b0");
 NexButton btn_2   = NexButton(1, 4, "b1");
@@ -40,6 +41,8 @@ NexButton btn_n   = NexButton(1, 39, "b36");
 NexButton btn_m   = NexButton(1, 40, "b37");
 NexButton btn_symbol_shift   = NexButton(1, 41, "b38");
 NexButton btn_space   = NexButton(1, 42, "b39");
+
+NexButton btn_keyboard   = NexButton(0, 19, "b0");
 
 NexText line_kb = NexText(1, 2, "t0");
 bool caps_shift = false;
@@ -87,6 +90,7 @@ NexTouch *nex_listen_list[] =
 	&btn_m,
 	&btn_symbol_shift,
 	&btn_space,
+	&btn_keyboard,
     NULL
 };
 
@@ -131,6 +135,7 @@ void registrButtons(){
 	btn_m.attachPop(btnmPopCallback);
 	btn_symbol_shift.attachPop(btnSymbolShiftPopCallback);
 	btn_space.attachPop(btnSpacePopCallback);
+	btn_keyboard.attachPop(btnKeyboardPopCallback);
 }
 
 void btn1PopCallback(void *ptr){
@@ -347,6 +352,7 @@ void btnlPopCallback(void *ptr){
 void btnenterPopCallback(void *ptr){
 	//line_kb.setText("1");
     sendCommand("page 0");
+	displayLoadLines();
 }
 
 void btnCapsShiftPopCallback(void *ptr){
@@ -424,4 +430,9 @@ void btnSymbolShiftPopCallback(void *ptr){
 
 void btnSpacePopCallback(void *ptr){
 	line_kb.setText(" ");
+}
+
+void btnKeyboardPopCallback(void *ptr){
+	displaySaveLines();
+	sendCommand("page 1");
 }

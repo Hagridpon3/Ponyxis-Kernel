@@ -44,3 +44,4 @@ void btnnPopCallback(void *ptr);
 void btnmPopCallback(void *ptr);
 void btnSymbolShiftPopCallback(void *ptr);
 void btnSpacePopCallback(void *ptr);
+void btnKeyboardPopCallback(void *ptr);
