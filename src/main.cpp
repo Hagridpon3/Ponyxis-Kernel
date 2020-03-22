@@ -2,31 +2,13 @@
 #include <SerialFlash.h>
 #include "Nextion.h"
 #include "keyboard.h"
+#include "display.h"
 
 char line[60];
 char _ch;
 uint8_t _pos;
 
 SerialFlashFile file;
-
-NexText line0 = NexText(0, 1, "line0");
-NexText line1 = NexText(0, 1, "line1");
-NexText line2 = NexText(0, 1, "line2");
-NexText line3 = NexText(0, 1, "line3");
-NexText line4 = NexText(0, 1, "line4");
-NexText line5 = NexText(0, 1, "line5");
-NexText line6 = NexText(0, 1, "line6");
-NexText line7 = NexText(0, 1, "line7");
-NexText line8 = NexText(0, 1, "line8");
-NexText line9 = NexText(0, 1, "line9");
-NexText line10 = NexText(0, 1, "line10");
-NexText line11 = NexText(0, 1, "line11");
-NexText line12 = NexText(0, 1, "line12");
-NexText line13 = NexText(0, 1, "line13");
-NexText line14 = NexText(0, 1, "line14");
-NexText line15 = NexText(0, 1, "line15");
-NexText line16 = NexText(0, 1, "line16");
-NexText line17 = NexText(0, 1, "line17");
 
 NexButton btn_1   = NexButton(1, 3, "b0");
 NexButton btn_2   = NexButton(1, 4, "b1");
@@ -117,6 +99,7 @@ NexTouch *nex_listen_list[] =
 char buff[60];
 void setup() {
 	nexInit();
+	SerialFlash.begin(6);
 	btn_1.attachPop(btn1PopCallback);
 	btn_2.attachPop(btn2PopCallback);
 	btn_3.attachPop(btn3PopCallback);
@@ -158,11 +141,8 @@ void setup() {
 	btn_symbol_shift.attachPop(btnSymbolShiftPopCallback);
 	btn_space.attachPop(btnSpacePopCallback);
 
-	line0.setText("Ponyxis kernel v0.1.0.0");
-	line1.setText("<");
-	
-	line0.getText(buff, 60);
-	line3.setText(buff);
+	displayPrintf(0, "Ponyxis kernel v0.2.0.0");
+	displayPrintf(1, ">");
 }
 
 void loop() {
