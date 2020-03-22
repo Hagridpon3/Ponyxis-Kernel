@@ -1,6 +1,9 @@
 #pragma once
 #include <Arduino.h>
+#include "Nextion.h"
 
+extern NexTouch *nex_listen_list[];
+void registrButtons();
 void btn1PopCallback(void *ptr);
 void btn2PopCallback(void *ptr);
 void btn3PopCallback(void *ptr);
