@@ -1,4 +1,3 @@
-#ifndef _PARSER_H
-#define _PARSER_H
+#pragma once
 
-#endif
+#include "Arduino.h"

@@ -11,6 +11,7 @@ uint8_t _pos;
 SerialFlashFile file;
 
 void setup() {
+	Serial.begin(9600);
 	nexInit();
 	SerialFlash.begin(6);
 	

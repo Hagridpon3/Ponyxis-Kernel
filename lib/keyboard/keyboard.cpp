@@ -44,9 +44,17 @@ NexButton btn_space   = NexButton(1, 42, "b39");
 
 NexButton btn_keyboard   = NexButton(0, 19, "b0");
 
-NexText line_kb = NexText(1, 2, "t0");
 bool caps_shift = false;
 bool symbol_shift = false;
+
+char line_buffer[60];
+uint8_t position = 0;
+char keyboard_normal[40] = {
+	'1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+	'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
+	'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '\n',
+	' ', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ' ', ' ',
+};
 
 NexTouch *nex_listen_list[] = 
 {
@@ -138,301 +146,175 @@ void registrButtons(){
 	btn_keyboard.attachPop(btnKeyboardPopCallback);
 }
 
+void clearLineBuffer(){
+	for(uint8_t i = 0; i <= 59; i++){
+		line_buffer[i] = '\0';
+	}
+}
+
+void keyboard_show_letter(uint8_t key_code){
+	displayPrintf(18, "%c", keyboard_normal[key_code]);
+}
+
 void btn1PopCallback(void *ptr){
-	line_kb.setText("1");
+	keyboard_show_letter(0);
 }
 
 void btn2PopCallback(void *ptr){
-	line_kb.setText("2");
+	keyboard_show_letter(1);
 }
 
 void btn3PopCallback(void *ptr){
-	line_kb.setText("3");
+	keyboard_show_letter(2);
 }
 
 void btn4PopCallback(void *ptr){
-	line_kb.setText("4");
+	keyboard_show_letter(3);
 }
 
 void btn5PopCallback(void *ptr){
-	line_kb.setText("5");
+	keyboard_show_letter(4);
 }
 
 void btn6PopCallback(void *ptr){
-	line_kb.setText("6");
+	keyboard_show_letter(5);
 }
 
 void btn7PopCallback(void *ptr){
-	line_kb.setText("7");
+	keyboard_show_letter(6);
 }
 
 void btn8PopCallback(void *ptr){
-	line_kb.setText("8");
+	keyboard_show_letter(7);
 }
 
 void btn9PopCallback(void *ptr){
-	line_kb.setText("9");
+	keyboard_show_letter(8);
 }
 
 void btn0PopCallback(void *ptr){
-	line_kb.setText("0");
+	keyboard_show_letter(9);
 }
 
 void btnqPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("Q");
-		caps_shift = false;
-	}else{
-		line_kb.setText("q");
-	}
+	keyboard_show_letter(10);
 }
 
 void btnwPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("W");
-		caps_shift = false;
-	}else{
-		line_kb.setText("w");
-	}
+	keyboard_show_letter(11);
 }
 
 void btnePopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("E");
-		caps_shift = false;
-	}else{
-		line_kb.setText("e");
-	}
+	keyboard_show_letter(12);
 }
 
 void btnrPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("R");
-		caps_shift = false;
-	}else{
-		line_kb.setText("r");
-	}
+	keyboard_show_letter(13);
 }
 
 void btntPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("T");
-		caps_shift = false;
-	}else{
-		line_kb.setText("t");
-	}
+	keyboard_show_letter(14);
 }
 
 void btnyPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("Y");
-		caps_shift = false;
-	}else{
-		line_kb.setText("y");
-	}
+	keyboard_show_letter(15);
 }
 
 void btnuPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("U");
-		caps_shift = false;
-	}else{
-		line_kb.setText("u");
-	}
+	keyboard_show_letter(16);
 }
 
 void btniPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("I");
-		caps_shift = false;
-	}else{
-		line_kb.setText("i");
-	}
+	keyboard_show_letter(17);
 }
 
 void btnoPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("O");
-		caps_shift = false;
-	}else{
-		line_kb.setText("o");
-	}
+	keyboard_show_letter(18);
 }
 
 void btnpPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("P");
-		caps_shift = false;
-	}else{
-		line_kb.setText("p");
-	}
+	keyboard_show_letter(19);
 }
 
 void btnaPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("A");
-		caps_shift = false;
-	}else{
-		line_kb.setText("a");
-	}
+	keyboard_show_letter(20);
 }
 
 void btnsPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("S");
-		caps_shift = false;
-	}else{
-		line_kb.setText("s");
-	}
+	keyboard_show_letter(21);
 }
 
 void btndPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("D");
-		caps_shift = false;
-	}else{
-		line_kb.setText("d");
-	}
+	keyboard_show_letter(22);
 }
 
 void btnfPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("F");
-		caps_shift = false;
-	}else{
-		line_kb.setText("f");
-	}
+	keyboard_show_letter(23);
 }
 
 void btngPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("G");
-		caps_shift = false;
-	}else{
-		line_kb.setText("g");
-	}
+	keyboard_show_letter(24);
 }
 
 void btnhPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("H");
-		caps_shift = false;
-	}else{
-		line_kb.setText("h");
-	}
+	keyboard_show_letter(25);
 }
 
 void btnjPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("J");
-		caps_shift = false;
-	}else{
-		line_kb.setText("j");
-	}
+	keyboard_show_letter(26);
 }
 
 void btnkPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("K");
-		caps_shift = false;
-	}else{
-		line_kb.setText("k");
-	}
+	keyboard_show_letter(27);
 }
 
 void btnlPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("L");
-		caps_shift = false;
-	}else{
-		line_kb.setText("l");
-	}
+	keyboard_show_letter(28);
 }
 
 void btnenterPopCallback(void *ptr){
-	//line_kb.setText("1");
-    sendCommand("page 0");
-	displayLoadLines();
+	sendCommand("page 0");
 }
 
 void btnCapsShiftPopCallback(void *ptr){
-	//line_kb.setText("1");
-	caps_shift = true;
 }
 
 void btnzPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("Z");
-		caps_shift = false;
-	}else{
-		line_kb.setText("z");
-	}
+	keyboard_show_letter(31);
 }
 
 void btnxPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("X");
-		caps_shift = false;
-	}else{
-		line_kb.setText("x");
-	}
+	keyboard_show_letter(32);
 }
 
 void btncPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("C");
-		caps_shift = false;
-	}else{
-		line_kb.setText("c");
-	}
+	keyboard_show_letter(33);
 }
 
 void btnvPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("V");
-		caps_shift = false;
-	}else{
-		line_kb.setText("v");
-	}
+	keyboard_show_letter(34);
 }
 
 void btnbPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("B");
-		caps_shift = false;
-	}else{
-		line_kb.setText("b");
-	}
+	keyboard_show_letter(35);
 }
 
 void btnnPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("N");
-		caps_shift = false;
-	}else{
-		line_kb.setText("n");
-	}
+	keyboard_show_letter(36);
 }
 
 void btnmPopCallback(void *ptr){
-	if (caps_shift == true){
-		line_kb.setText("M");
-		caps_shift = false;
-	}else{
-		line_kb.setText("m");
-	}
+	keyboard_show_letter(37);
 }
 
 void btnSymbolShiftPopCallback(void *ptr){
-	//line_kb.setText("9");
-	symbol_shift = true;
 }
 
 void btnSpacePopCallback(void *ptr){
-	line_kb.setText(" ");
+	keyboard_show_letter(39);
 }
 
 void btnKeyboardPopCallback(void *ptr){
-	displaySaveLines();
 	sendCommand("page 1");
 }
+
