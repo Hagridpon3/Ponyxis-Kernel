@@ -55,6 +55,12 @@ char keyboard_normal[40] = {
 	'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '\n',
 	' ', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ' ', ' ',
 };
+char keyboard_big[40] = {
+	'1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
+	'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
+	'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', '\n',
+	' ', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ' ', ' ',
+};
 
 NexTouch *nex_listen_list[] = 
 {
@@ -153,7 +159,7 @@ void clearLineBuffer(){
 }
 
 void keyboard_show_letter(uint8_t key_code){
-	displayPrintf(18, "%c", keyboard_normal[key_code]);
+	displayPrintf(18, "%c", caps_shift ? keyboard_big[key_code] : keyboard_normal[key_code]);
 }
 
 void btn1PopCallback(void *ptr){
@@ -277,6 +283,7 @@ void btnenterPopCallback(void *ptr){
 }
 
 void btnCapsShiftPopCallback(void *ptr){
+	caps_shift = !caps_shift;
 }
 
 void btnzPopCallback(void *ptr){
