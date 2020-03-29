@@ -14,7 +14,6 @@ void setup() {
 	Serial.begin(9600);
 	nexInit();
 	SerialFlash.begin(6);
-	
 	registrButtons();
 
 	displayPrintf(0, "Ponyxis kernel v0.3.0.0");

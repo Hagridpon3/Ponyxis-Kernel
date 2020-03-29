@@ -20,6 +20,8 @@ NexText line14 = NexText(0, 1, "line14");
 NexText line15 = NexText(0, 1, "line15");
 NexText line16 = NexText(0, 1, "line16");
 NexText line17 = NexText(0, 1, "line17");
+
+///line in screen 1(display screen)
 NexText line_kb = NexText(1, 2, "t0");
 
 NexText lcd_lines[19] = {
