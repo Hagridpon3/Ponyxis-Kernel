@@ -44,6 +44,8 @@ NexButton btn_space   = NexButton(1, 42, "b39");
 
 NexButton btn_keyboard   = NexButton(0, 19, "b0");
 
+NexText keyboard_line = NexText(1, 2, "t0");
+
 bool caps_shift = false;
 bool symbol_shift = false;
 
@@ -160,7 +162,9 @@ void clearLineBuffer(){
 }
 
 void keyboard_show_letter(uint8_t key_code){
-	//displayPrintf(18, "%c", caps_shift ? keyboard_big[key_code] : keyboard_normal[key_code]);
+	char array[20];
+	sprintf(array, "%c", caps_shift ? keyboard_big[key_code] : keyboard_normal[key_code]);
+	keyboard_line.setText(array);
 }
 
 void btn1PopCallback(void *ptr){
@@ -281,6 +285,7 @@ void btnlPopCallback(void *ptr){
 
 void btnenterPopCallback(void *ptr){
 	sendCommand("page 0");
+	displayLoadLines();
 }
 
 void btnCapsShiftPopCallback(void *ptr){
@@ -323,6 +328,7 @@ void btnSpacePopCallback(void *ptr){
 }
 
 void btnKeyboardPopCallback(void *ptr){
+	displaySaveLines();
 	sendCommand("page 1");
 }
 
