@@ -16,7 +16,7 @@ void setup() {
 	SerialFlash.begin(6);
 	registrButtons();
 
-	displayPrintf("Ponyxis kernel v0.3.0.0\n");
+	displayPrintf("Ponyxis kernel v0.4.0.0\n");
 	displayPrintf(">");
 }
 
