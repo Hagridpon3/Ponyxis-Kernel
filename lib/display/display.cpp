@@ -24,11 +24,11 @@ NexText line17 = NexText(0, 1, "line17");
 ///line in screen 1(display screen)
 NexText line_kb = NexText(1, 2, "t0");
 
-NexText lcd_lines[19] = {
+NexText lcd_lines[18] = {
     line0, line1, line2, line3, line4,
     line5, line6, line7, line8, line9,
     line10, line11, line12, line13, line14,
-    line15, line16, line17, line_kb
+    line15, line16, line17
 };
 
 char display_lines[17][60] = {0};
@@ -60,6 +60,7 @@ void displayScroolUp(){
         sendCommand(clear_line);
         lcd_lines[i].setText(actual_line);
         memset(actual_line, 0, 60);
+		delay(60);
     }
 
     sendCommand("line17.txt=\"\"");
