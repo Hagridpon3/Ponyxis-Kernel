@@ -5,4 +5,4 @@
 extern void displaySaveLines();
 extern void displayLoadLines();
 extern void displayScroolUp();
-extern void displayPrintf(uint8_t id, char *fmt, ...);
+extern void displayPrintf(char *fmt, ...);

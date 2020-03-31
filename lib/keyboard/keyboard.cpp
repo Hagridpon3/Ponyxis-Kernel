@@ -160,7 +160,7 @@ void clearLineBuffer(){
 }
 
 void keyboard_show_letter(uint8_t key_code){
-	displayPrintf(18, "%c", caps_shift ? keyboard_big[key_code] : keyboard_normal[key_code]);
+	//displayPrintf(18, "%c", caps_shift ? keyboard_big[key_code] : keyboard_normal[key_code]);
 }
 
 void btn1PopCallback(void *ptr){

@@ -32,6 +32,7 @@ NexText lcd_lines[19] = {
 };
 
 char display_lines[17][60] = {0};
+uint8_t lineNumber = 0;
 
 void displaySaveLines(){
     for(uint8_t i = 0; i <=17; i++){
@@ -64,15 +65,21 @@ void displayScroolUp(){
     sendCommand("line17.txt=\"\"");
 }
 
-void displayPrintf(uint8_t id, char *fmt, ...){
+void displayPrintf(char *fmt, ...){
     char text[60];
     va_list va;
     va_start(va, fmt);
     vsprintf(text, fmt, va);
     va_end(va);
 
-    lcd_lines[id].setText(text);
-    if(id == 17){
+    lcd_lines[lineNumber].setText(text);
+	if(strchr(text, '\n')){
+		lineNumber++;
+	}
+
+    if(lineNumber == 17){
         displayScroolUp();
+		lineNumber = 16;
     }
 }
+
