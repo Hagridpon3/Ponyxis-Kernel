@@ -159,12 +159,15 @@ void clearLineBuffer(){
 	for(uint8_t i = 0; i <= 59; i++){
 		line_buffer[i] = '\0';
 	}
+	position = 0;
 }
 
 void keyboard_show_letter(uint8_t key_code){
 	char array[20];
 	sprintf(array, "%c", caps_shift ? keyboard_big[key_code] : keyboard_normal[key_code]);
 	keyboard_line.setText(array);
+	line_buffer[position] = array[0];
+	position++;
 }
 
 void btn1PopCallback(void *ptr){
@@ -285,7 +288,11 @@ void btnlPopCallback(void *ptr){
 
 void btnenterPopCallback(void *ptr){
 	sendCommand("page 0");
+	keyboard_show_letter(29);
 	displayLoadLines();
+	displayPrintf(line_buffer);
+	displayPrintf(">");
+	clearLineBuffer();
 }
 
 void btnCapsShiftPopCallback(void *ptr){
