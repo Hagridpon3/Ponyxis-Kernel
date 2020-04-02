@@ -16,10 +16,10 @@ void setup() {
 	SerialFlash.begin(6);
 	registrButtons();
 
-	displayPrintf("Ponyxis kernel v0.4.0.0\n");
+	displayPrintf("Ponyxis kernel %s\n",VERSION);
 	displayPrintf(">");
 }
 
 void loop() {
-	nexLoop(nex_listen_list);
+	nexLoop(nexListenList);
 }

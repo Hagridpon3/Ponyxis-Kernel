@@ -2,7 +2,7 @@
 #include <Arduino.h>
 #include "Nextion.h"
 
-extern NexTouch *nex_listen_list[];
+extern NexTouch *nexListenList[];
 void registrButtons();
 void btn1PopCallback(void *ptr);
 void btn2PopCallback(void *ptr);
@@ -33,7 +33,7 @@ void btnhPopCallback(void *ptr);
 void btnjPopCallback(void *ptr);
 void btnkPopCallback(void *ptr);
 void btnlPopCallback(void *ptr);
-void btnenterPopCallback(void *ptr);
+void btnEnterPopCallback(void *ptr);
 void btnCapsShiftPopCallback(void *ptr);
 void btnzPopCallback(void *ptr);
 void btnxPopCallback(void *ptr);

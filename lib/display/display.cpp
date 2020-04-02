@@ -21,19 +21,19 @@ NexText line15 = NexText(0, 1, "line15");
 NexText line16 = NexText(0, 1, "line16");
 NexText line17 = NexText(0, 1, "line17");
 
-NexText lcd_lines[18] = {
+NexText lcdLines[18] = {
     line0, line1, line2, line3, line4,
     line5, line6, line7, line8, line9,
     line10, line11, line12, line13, line14,
     line15, line16, line17
 };
 
-char display_lines[17][60] = {0};
+char displayLines[17][60] = {0};
 uint8_t lineNumber = 0;
 
 void displaySaveLines(){
     for(uint8_t i = 0; i <=17; i++){
-        lcd_lines[i].getText(display_lines[i], 60);
+        lcdLines[i].getText(displayLines[i], 60);
     }
 }
 
@@ -42,21 +42,21 @@ void displayLoadLines(){
     for(uint8_t i = 0; i <=17; i++){
         sprintf(temp, "line%d.txt=\"\"", i);
         sendCommand(temp);
-        lcd_lines[i].setText(display_lines[i]);
+        lcdLines[i].setText(displayLines[i]);
     }
 }
 
 void displayScroolUp(){
 
-    char actual_line[60] = {0};
-    char clear_line[20];
+    char actualLine[60] = {0};
+    char clearLine[20];
 
     for(uint8_t i = 0; i <=16; i++){
-        lcd_lines[i + 1].getText(actual_line, 60);
-        sprintf(clear_line, "line%d.txt=\"\"", i);
-        sendCommand(clear_line);
-        lcd_lines[i].setText(actual_line);
-        memset(actual_line, 0, 60);
+        lcdLines[i + 1].getText(actualLine, 60);
+        sprintf(clearLine, "line%d.txt=\"\"", i);
+        sendCommand(clearLine);
+        lcdLines[i].setText(actualLine);
+        memset(actualLine, 0, 60);
 		delay(60);
     }
 
@@ -70,7 +70,7 @@ void displayPrintf(char *fmt, ...){
     vsprintf(text, fmt, va);
     va_end(va);
 
-    lcd_lines[lineNumber].setText(text);
+    lcdLines[lineNumber].setText(text);
 	if(strchr(text, '\n')){
 		lineNumber++;
 	}

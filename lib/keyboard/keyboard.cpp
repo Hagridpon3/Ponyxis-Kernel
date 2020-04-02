@@ -1,337 +1,337 @@
 #include "keyboard.h"
 #include "display.h"
 
-NexButton btn_1   = NexButton(1, 3, "b0");
-NexButton btn_2   = NexButton(1, 4, "b1");
-NexButton btn_3   = NexButton(1, 5, "b2");
-NexButton btn_4   = NexButton(1, 6, "b3");
-NexButton btn_5   = NexButton(1, 7, "b4");
-NexButton btn_6   = NexButton(1, 8, "b5");
-NexButton btn_7   = NexButton(1, 9, "b6");
-NexButton btn_8   = NexButton(1, 10, "b7");
-NexButton btn_9   = NexButton(1, 11, "b8");
-NexButton btn_0   = NexButton(1, 12, "b9");
-NexButton btn_q   = NexButton(1, 13, "b10");
-NexButton btn_w   = NexButton(1, 14, "b11");
-NexButton btn_e   = NexButton(1, 15, "b12");
-NexButton btn_r   = NexButton(1, 16, "b13");
-NexButton btn_t   = NexButton(1, 17, "b14");
-NexButton btn_y   = NexButton(1, 18, "b15");
-NexButton btn_u   = NexButton(1, 19, "b16");
-NexButton btn_i   = NexButton(1, 20, "b17");
-NexButton btn_o   = NexButton(1, 21, "b18");
-NexButton btn_p   = NexButton(1, 22, "b19");
-NexButton btn_a   = NexButton(1, 23, "b20");
-NexButton btn_s   = NexButton(1, 24, "b21");
-NexButton btn_d   = NexButton(1, 25, "b22");
-NexButton btn_f   = NexButton(1, 26, "b23");
-NexButton btn_g   = NexButton(1, 27, "b24");
-NexButton btn_h   = NexButton(1, 28, "b25");
-NexButton btn_j   = NexButton(1, 29, "b26");
-NexButton btn_k   = NexButton(1, 30, "b27");
-NexButton btn_l   = NexButton(1, 31, "b28");
-NexButton btn_enter   = NexButton(1, 32, "b29");
-NexButton btn_caps_shift   = NexButton(1, 33, "b30");
-NexButton btn_z   = NexButton(1, 34, "b31");
-NexButton btn_x   = NexButton(1, 35, "b32");
-NexButton btn_c   = NexButton(1, 36, "b33");
-NexButton btn_v   = NexButton(1, 37, "b34");
-NexButton btn_b   = NexButton(1, 38, "b35");
-NexButton btn_n   = NexButton(1, 39, "b36");
-NexButton btn_m   = NexButton(1, 40, "b37");
-NexButton btn_symbol_shift   = NexButton(1, 41, "b38");
-NexButton btn_space   = NexButton(1, 42, "b39");
+NexButton btn1   = NexButton(1, 3, "b0");
+NexButton btn2   = NexButton(1, 4, "b1");
+NexButton btn3   = NexButton(1, 5, "b2");
+NexButton btn4   = NexButton(1, 6, "b3");
+NexButton btn5   = NexButton(1, 7, "b4");
+NexButton btn6   = NexButton(1, 8, "b5");
+NexButton btn7   = NexButton(1, 9, "b6");
+NexButton btn8   = NexButton(1, 10, "b7");
+NexButton btn9   = NexButton(1, 11, "b8");
+NexButton btn0   = NexButton(1, 12, "b9");
+NexButton btnQ   = NexButton(1, 13, "b10");
+NexButton btnW   = NexButton(1, 14, "b11");
+NexButton btnE   = NexButton(1, 15, "b12");
+NexButton btnR   = NexButton(1, 16, "b13");
+NexButton btnT   = NexButton(1, 17, "b14");
+NexButton btnY   = NexButton(1, 18, "b15");
+NexButton btnU   = NexButton(1, 19, "b16");
+NexButton btnI   = NexButton(1, 20, "b17");
+NexButton btnO   = NexButton(1, 21, "b18");
+NexButton btnP   = NexButton(1, 22, "b19");
+NexButton btnA   = NexButton(1, 23, "b20");
+NexButton btnS   = NexButton(1, 24, "b21");
+NexButton btnD   = NexButton(1, 25, "b22");
+NexButton btnF   = NexButton(1, 26, "b23");
+NexButton btnG   = NexButton(1, 27, "b24");
+NexButton btnH   = NexButton(1, 28, "b25");
+NexButton btnJ   = NexButton(1, 29, "b26");
+NexButton btnK   = NexButton(1, 30, "b27");
+NexButton btnL   = NexButton(1, 31, "b28");
+NexButton btnEnter   = NexButton(1, 32, "b29");
+NexButton btnCapsShift   = NexButton(1, 33, "b30");
+NexButton btnZ   = NexButton(1, 34, "b31");
+NexButton btnX   = NexButton(1, 35, "b32");
+NexButton btnC   = NexButton(1, 36, "b33");
+NexButton btnV   = NexButton(1, 37, "b34");
+NexButton btnB   = NexButton(1, 38, "b35");
+NexButton btnN   = NexButton(1, 39, "b36");
+NexButton btnM   = NexButton(1, 40, "b37");
+NexButton btnSymbolShift   = NexButton(1, 41, "b38");
+NexButton btnSpace   = NexButton(1, 42, "b39");
 
-NexButton btn_keyboard   = NexButton(0, 19, "b0");
+NexButton btnKeyboard   = NexButton(0, 19, "b0");
 
-NexText keyboard_line = NexText(1, 2, "t0");
+NexText keyboardLine = NexText(1, 2, "t0");
 
-bool caps_shift = false;
-bool symbol_shift = false;
+bool capsShift = false;
+bool symbolShift = false;
 
-char line_buffer[60];
+char lineBuffer[60];
 uint8_t position = 0;
 
-char keyboard_normal[40] = {
+char keyboardNormal[40] = {
 	'1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
 	'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p',
 	'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', '\n',
 	' ', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ' ', ' ',
 };
-char keyboard_big[40] = {
+char keyboardBig[40] = {
 	'1', '2', '3', '4', '5', '6', '7', '8', '9', '0',
 	'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
 	'A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L', '\n',
 	' ', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', ' ', ' ',
 };
 
-NexTouch *nex_listen_list[] = 
+NexTouch *nexListenList[] = 
 {
-    &btn_1,
-	&btn_2,
-	&btn_3,
-	&btn_4,
-	&btn_5,
-	&btn_6,
-	&btn_7,
-	&btn_8,
-	&btn_9,
-	&btn_0,
-	&btn_q,
-	&btn_w,
-	&btn_e,
-	&btn_r,
-	&btn_t,
-	&btn_y,
-	&btn_u,
-	&btn_i,
-	&btn_o,
-	&btn_p,
-	&btn_a,
-	&btn_s,
-	&btn_d,
-	&btn_f,
-	&btn_g,
-	&btn_h,
-	&btn_j,
-	&btn_k,
-	&btn_l,
-	&btn_enter,
-	&btn_caps_shift,
-	&btn_z,
-	&btn_x,
-	&btn_c,
-	&btn_v,
-	&btn_b,
-	&btn_n,
-	&btn_m,
-	&btn_symbol_shift,
-	&btn_space,
-	&btn_keyboard,
+    &btn1,
+	&btn2,
+	&btn3,
+	&btn4,
+	&btn5,
+	&btn6,
+	&btn7,
+	&btn8,
+	&btn9,
+	&btn0,
+	&btnQ,
+	&btnW,
+	&btnE,
+	&btnR,
+	&btnT,
+	&btnY,
+	&btnU,
+	&btnI,
+	&btnO,
+	&btnP,
+	&btnA,
+	&btnS,
+	&btnD,
+	&btnF,
+	&btnG,
+	&btnH,
+	&btnJ,
+	&btnK,
+	&btnL,
+	&btnEnter,
+	&btnCapsShift,
+	&btnZ,
+	&btnX,
+	&btnC,
+	&btnV,
+	&btnB,
+	&btnN,
+	&btnM,
+	&btnSymbolShift,
+	&btnSpace,
+	&btnKeyboard,
     NULL
 };
 
 void registrButtons(){
-	btn_1.attachPop(btn1PopCallback);
-	btn_2.attachPop(btn2PopCallback);
-	btn_3.attachPop(btn3PopCallback);
-	btn_4.attachPop(btn4PopCallback);
-	btn_5.attachPop(btn5PopCallback);
-	btn_6.attachPop(btn6PopCallback);
-	btn_7.attachPop(btn7PopCallback);
-	btn_8.attachPop(btn8PopCallback);
-	btn_9.attachPop(btn9PopCallback);
-	btn_0.attachPop(btn0PopCallback);
-	btn_q.attachPop(btnqPopCallback);
-	btn_w.attachPop(btnwPopCallback);
-	btn_e.attachPop(btnePopCallback);
-	btn_r.attachPop(btnrPopCallback);
-	btn_t.attachPop(btntPopCallback);
-	btn_y.attachPop(btnyPopCallback);
-	btn_u.attachPop(btnuPopCallback);
-	btn_i.attachPop(btniPopCallback);
-	btn_o.attachPop(btnoPopCallback);
-	btn_p.attachPop(btnpPopCallback);
-	btn_a.attachPop(btnaPopCallback);
-	btn_s.attachPop(btnsPopCallback);
-	btn_d.attachPop(btndPopCallback);
-	btn_f.attachPop(btnfPopCallback);
-	btn_g.attachPop(btngPopCallback);
-	btn_h.attachPop(btnhPopCallback);
-	btn_j.attachPop(btnjPopCallback);
-	btn_k.attachPop(btnkPopCallback);
-	btn_l.attachPop(btnlPopCallback);
-	btn_enter.attachPop(btnenterPopCallback);
-	btn_caps_shift.attachPop(btnCapsShiftPopCallback);
-	btn_z.attachPop(btnzPopCallback);
-	btn_x.attachPop(btnxPopCallback);
-	btn_c.attachPop(btncPopCallback);
-	btn_v.attachPop(btnvPopCallback);
-	btn_b.attachPop(btnbPopCallback);
-	btn_n.attachPop(btnnPopCallback);
-	btn_m.attachPop(btnmPopCallback);
-	btn_symbol_shift.attachPop(btnSymbolShiftPopCallback);
-	btn_space.attachPop(btnSpacePopCallback);
-	btn_keyboard.attachPop(btnKeyboardPopCallback);
+	btn1.attachPop(btn1PopCallback);
+	btn2.attachPop(btn2PopCallback);
+	btn3.attachPop(btn3PopCallback);
+	btn4.attachPop(btn4PopCallback);
+	btn5.attachPop(btn5PopCallback);
+	btn6.attachPop(btn6PopCallback);
+	btn7.attachPop(btn7PopCallback);
+	btn8.attachPop(btn8PopCallback);
+	btn9.attachPop(btn9PopCallback);
+	btn0.attachPop(btn0PopCallback);
+	btnQ.attachPop(btnqPopCallback);
+	btnW.attachPop(btnwPopCallback);
+	btnE.attachPop(btnePopCallback);
+	btnR.attachPop(btnrPopCallback);
+	btnT.attachPop(btntPopCallback);
+	btnY.attachPop(btnyPopCallback);
+	btnU.attachPop(btnuPopCallback);
+	btnI.attachPop(btniPopCallback);
+	btnO.attachPop(btnoPopCallback);
+	btnP.attachPop(btnpPopCallback);
+	btnA.attachPop(btnaPopCallback);
+	btnS.attachPop(btnsPopCallback);
+	btnD.attachPop(btndPopCallback);
+	btnF.attachPop(btnfPopCallback);
+	btnG.attachPop(btngPopCallback);
+	btnH.attachPop(btnhPopCallback);
+	btnJ.attachPop(btnjPopCallback);
+	btnK.attachPop(btnkPopCallback);
+	btnL.attachPop(btnlPopCallback);
+	btnEnter.attachPop(btnEnterPopCallback);
+	btnCapsShift.attachPop(btnCapsShiftPopCallback);
+	btnZ.attachPop(btnzPopCallback);
+	btnX.attachPop(btnxPopCallback);
+	btnC.attachPop(btncPopCallback);
+	btnV.attachPop(btnvPopCallback);
+	btnB.attachPop(btnbPopCallback);
+	btnN.attachPop(btnnPopCallback);
+	btnM.attachPop(btnmPopCallback);
+	btnSymbolShift.attachPop(btnSymbolShiftPopCallback);
+	btnSpace.attachPop(btnSpacePopCallback);
+	btnKeyboard.attachPop(btnKeyboardPopCallback);
 }
 
 void clearLineBuffer(){
 	for(uint8_t i = 0; i <= 59; i++){
-		line_buffer[i] = '\0';
+		lineBuffer[i] = '\0';
 	}
 	position = 0;
 }
 
-void keyboard_show_letter(uint8_t key_code){
+void keyboardShowLetter(uint8_t keyCode){
 	char array[20];
-	sprintf(array, "%c", caps_shift ? keyboard_big[key_code] : keyboard_normal[key_code]);
-	keyboard_line.setText(array);
-	line_buffer[position] = array[0];
+	sprintf(array, "%c", capsShift ? keyboardBig[keyCode] : keyboardNormal[keyCode]);
+	keyboardLine.setText(array);
+	lineBuffer[position] = array[0];
 	position++;
 }
 
 void btn1PopCallback(void *ptr){
-	keyboard_show_letter(0);
+	keyboardShowLetter(0);
 }
 
 void btn2PopCallback(void *ptr){
-	keyboard_show_letter(1);
+	keyboardShowLetter(1);
 }
 
 void btn3PopCallback(void *ptr){
-	keyboard_show_letter(2);
+	keyboardShowLetter(2);
 }
 
 void btn4PopCallback(void *ptr){
-	keyboard_show_letter(3);
+	keyboardShowLetter(3);
 }
 
 void btn5PopCallback(void *ptr){
-	keyboard_show_letter(4);
+	keyboardShowLetter(4);
 }
 
 void btn6PopCallback(void *ptr){
-	keyboard_show_letter(5);
+	keyboardShowLetter(5);
 }
 
 void btn7PopCallback(void *ptr){
-	keyboard_show_letter(6);
+	keyboardShowLetter(6);
 }
 
 void btn8PopCallback(void *ptr){
-	keyboard_show_letter(7);
+	keyboardShowLetter(7);
 }
 
 void btn9PopCallback(void *ptr){
-	keyboard_show_letter(8);
+	keyboardShowLetter(8);
 }
 
 void btn0PopCallback(void *ptr){
-	keyboard_show_letter(9);
+	keyboardShowLetter(9);
 }
 
 void btnqPopCallback(void *ptr){
-	keyboard_show_letter(10);
+	keyboardShowLetter(10);
 }
 
 void btnwPopCallback(void *ptr){
-	keyboard_show_letter(11);
+	keyboardShowLetter(11);
 }
 
 void btnePopCallback(void *ptr){
-	keyboard_show_letter(12);
+	keyboardShowLetter(12);
 }
 
 void btnrPopCallback(void *ptr){
-	keyboard_show_letter(13);
+	keyboardShowLetter(13);
 }
 
 void btntPopCallback(void *ptr){
-	keyboard_show_letter(14);
+	keyboardShowLetter(14);
 }
 
 void btnyPopCallback(void *ptr){
-	keyboard_show_letter(15);
+	keyboardShowLetter(15);
 }
 
 void btnuPopCallback(void *ptr){
-	keyboard_show_letter(16);
+	keyboardShowLetter(16);
 }
 
 void btniPopCallback(void *ptr){
-	keyboard_show_letter(17);
+	keyboardShowLetter(17);
 }
 
 void btnoPopCallback(void *ptr){
-	keyboard_show_letter(18);
+	keyboardShowLetter(18);
 }
 
 void btnpPopCallback(void *ptr){
-	keyboard_show_letter(19);
+	keyboardShowLetter(19);
 }
 
 void btnaPopCallback(void *ptr){
-	keyboard_show_letter(20);
+	keyboardShowLetter(20);
 }
 
 void btnsPopCallback(void *ptr){
-	keyboard_show_letter(21);
+	keyboardShowLetter(21);
 }
 
 void btndPopCallback(void *ptr){
-	keyboard_show_letter(22);
+	keyboardShowLetter(22);
 }
 
 void btnfPopCallback(void *ptr){
-	keyboard_show_letter(23);
+	keyboardShowLetter(23);
 }
 
 void btngPopCallback(void *ptr){
-	keyboard_show_letter(24);
+	keyboardShowLetter(24);
 }
 
 void btnhPopCallback(void *ptr){
-	keyboard_show_letter(25);
+	keyboardShowLetter(25);
 }
 
 void btnjPopCallback(void *ptr){
-	keyboard_show_letter(26);
+	keyboardShowLetter(26);
 }
 
 void btnkPopCallback(void *ptr){
-	keyboard_show_letter(27);
+	keyboardShowLetter(27);
 }
 
 void btnlPopCallback(void *ptr){
-	keyboard_show_letter(28);
+	keyboardShowLetter(28);
 }
 
-void btnenterPopCallback(void *ptr){
+void btnEnterPopCallback(void *ptr){
 	sendCommand("page 0");
-	keyboard_show_letter(29);
+	keyboardShowLetter(29);
 	displayLoadLines();
-	displayPrintf(line_buffer);
+	displayPrintf(lineBuffer);
 	displayPrintf(">");
 	clearLineBuffer();
 }
 
 void btnCapsShiftPopCallback(void *ptr){
-	caps_shift = !caps_shift;
+	capsShift = !capsShift;
 }
 
 void btnzPopCallback(void *ptr){
-	keyboard_show_letter(31);
+	keyboardShowLetter(31);
 }
 
 void btnxPopCallback(void *ptr){
-	keyboard_show_letter(32);
+	keyboardShowLetter(32);
 }
 
 void btncPopCallback(void *ptr){
-	keyboard_show_letter(33);
+	keyboardShowLetter(33);
 }
 
 void btnvPopCallback(void *ptr){
-	keyboard_show_letter(34);
+	keyboardShowLetter(34);
 }
 
 void btnbPopCallback(void *ptr){
-	keyboard_show_letter(35);
+	keyboardShowLetter(35);
 }
 
 void btnnPopCallback(void *ptr){
-	keyboard_show_letter(36);
+	keyboardShowLetter(36);
 }
 
 void btnmPopCallback(void *ptr){
-	keyboard_show_letter(37);
+	keyboardShowLetter(37);
 }
 
 void btnSymbolShiftPopCallback(void *ptr){
 }
 
 void btnSpacePopCallback(void *ptr){
-	keyboard_show_letter(39);
+	keyboardShowLetter(39);
 }
 
 void btnKeyboardPopCallback(void *ptr){
