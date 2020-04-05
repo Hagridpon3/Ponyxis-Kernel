@@ -1,6 +1,7 @@
 #include "keyboard.h"
 #include "display.h"
 #include "parser.h"
+#include "../config.h"
 
 NexButton btn1   = NexButton(1, 3, "b0");
 NexButton btn2   = NexButton(1, 4, "b1");
@@ -165,6 +166,7 @@ void clearLineBuffer(){
 
 void keyboardShowLetter(uint8_t keyCode){
 	char array[20];
+    tone(BUZZER_PIN, 400, 50);
 	sprintf(array, "%c", capsShift ? keyboardBig[keyCode] : keyboardNormal[keyCode]);
 	keyboardLine.setText(array);
 	lineBuffer[position] = array[0];
@@ -299,6 +301,7 @@ void btnEnterPopCallback(void *ptr){
 }
 
 void btnCapsShiftPopCallback(void *ptr){
+    tone(BUZZER_PIN, 400, 50);
 	capsShift = !capsShift;
 }
 
@@ -331,6 +334,7 @@ void btnmPopCallback(void *ptr){
 }
 
 void btnSymbolShiftPopCallback(void *ptr){
+    tone(BUZZER_PIN, 400, 50);
 }
 
 void btnSpacePopCallback(void *ptr){
@@ -339,6 +343,7 @@ void btnSpacePopCallback(void *ptr){
 
 void btnKeyboardPopCallback(void *ptr){
 	displaySaveLines();
+    tone(BUZZER_PIN, 400, 50);
 	sendCommand("page 1");
 }
 
