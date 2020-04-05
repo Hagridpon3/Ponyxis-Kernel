@@ -1,5 +1,6 @@
 #include "keyboard.h"
 #include "display.h"
+#include "parser.h"
 
 NexButton btn1   = NexButton(1, 3, "b0");
 NexButton btn2   = NexButton(1, 4, "b1");
@@ -291,8 +292,10 @@ void btnEnterPopCallback(void *ptr){
 	keyboardShowLetter(29);
 	displayLoadLines();
 	displayPrintf(lineBuffer);
+    parserParse(lineBuffer);
+    clearLineBuffer();
 	displayPrintf(">");
-	clearLineBuffer();
+
 }
 
 void btnCapsShiftPopCallback(void *ptr){

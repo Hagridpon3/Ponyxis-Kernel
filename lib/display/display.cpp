@@ -47,9 +47,8 @@ void displayLoadLines(){
 }
 
 void displayScroolUp(){
-
     char actualLine[60] = {0};
-    char clearLine[20];
+    char clearLine[60];
 
     for(uint8_t i = 0; i <=16; i++){
         lcdLines[i + 1].getText(actualLine, 60);
@@ -57,7 +56,7 @@ void displayScroolUp(){
         sendCommand(clearLine);
         lcdLines[i].setText(actualLine);
         memset(actualLine, 0, 60);
-		delay(60);
+		delay(80);
     }
 
     sendCommand("line17.txt=\"\"");
