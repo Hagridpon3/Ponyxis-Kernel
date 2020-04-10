@@ -13,6 +13,7 @@ void parserParse(char input[60]){
                 displayPrintf("Author: Ponyxis\n");
                 displayPrintf("Version: %s\n", VERSION);
                 displayPrintf("Platform: Teensy 4.0\n");
+                displayPrintf(("USB Host support now!\n"));
                 break;
             case CMD_HELP:
                 displayPrintf("help screen work :)\n");

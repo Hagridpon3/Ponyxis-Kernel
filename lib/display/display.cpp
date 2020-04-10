@@ -50,13 +50,13 @@ void displayScroolUp(){
     char actualLine[60] = {0};
     char clearLine[60];
 
-    for(uint8_t i = 0; i <=16; i++){
+    for(uint8_t i = 0; i <=17; i++){
         lcdLines[i + 1].getText(actualLine, 60);
         sprintf(clearLine, "line%d.txt=\"\"", i);
         sendCommand(clearLine);
         lcdLines[i].setText(actualLine);
         memset(actualLine, 0, 60);
-		delay(80);
+		delay(5);
     }
 
     sendCommand("line17.txt=\"\"");
@@ -74,9 +74,9 @@ void displayPrintf(char *fmt, ...){
 		lineNumber++;
 	}
 
-    if(lineNumber == 17){
+    if(lineNumber == 18){
         displayScroolUp();
-		lineNumber = 16;
+		lineNumber = 17;
     }
 }
 
