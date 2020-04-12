@@ -16,6 +16,7 @@ void PressKey(int key){
     char tmpKey = (char) key;
 
     if(key == '\n'){
+        tone(2, 400, 50);
         displayPrintf("\n");
         parserParse(lineBuffer);
         clearLineBuffer();

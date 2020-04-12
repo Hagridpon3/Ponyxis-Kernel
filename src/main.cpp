@@ -8,10 +8,9 @@ USBHost myusb;
 KeyboardController keyboard(myusb);
 
 void setup() {
+    nexInit();
 	Serial.begin(9600);
 	myusb.begin();
-
-    nexInit();
 	keyboard.attachPress(PressKey);
 
 	displayPrintf("Ponyxis kernel %s\n",VERSION);
