@@ -2,11 +2,11 @@
 #include "display.h"
 #include "parser.h"
 
-char lineBuffer[60] = { 0 };
-int position = 0;
+static char lineBuffer[60] = { 0 };
+static int position = 0;
 
 void clearLineBuffer(){
-	for(uint8_t i = 0; i <= 59; i++){
+	for(int i = 0; i <= 59; i++){
 		lineBuffer[i] = '\0';
 	}
 	position = 0;
@@ -27,5 +27,4 @@ void PressKey(int key){
         lineBuffer[position] = tmpKey;
         position++;
     }
-
 }

@@ -3,6 +3,9 @@
 #include "Nextion.h"
 
 extern void displaySaveLines();
+
 extern void displayLoadLines();
-extern void displayScroolUp();
+
+void displayScrollUp();
+
 extern void displayPrintf(char *fmt, ...);

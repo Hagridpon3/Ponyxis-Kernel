@@ -2,54 +2,54 @@
 #include <string.h>  
 #include <stdarg.h>
 
-NexText line0 = NexText(0, 1, "line0");
-NexText line1 = NexText(0, 1, "line1");
-NexText line2 = NexText(0, 1, "line2");
-NexText line3 = NexText(0, 1, "line3");
-NexText line4 = NexText(0, 1, "line4");
-NexText line5 = NexText(0, 1, "line5");
-NexText line6 = NexText(0, 1, "line6");
-NexText line7 = NexText(0, 1, "line7");
-NexText line8 = NexText(0, 1, "line8");
-NexText line9 = NexText(0, 1, "line9");
-NexText line10 = NexText(0, 1, "line10");
-NexText line11 = NexText(0, 1, "line11");
-NexText line12 = NexText(0, 1, "line12");
-NexText line13 = NexText(0, 1, "line13");
-NexText line14 = NexText(0, 1, "line14");
-NexText line15 = NexText(0, 1, "line15");
-NexText line16 = NexText(0, 1, "line16");
-NexText line17 = NexText(0, 1, "line17");
+static NexText line0 = NexText(0, 1, "line0");
+static NexText line1 = NexText(0, 1, "line1");
+static NexText line2 = NexText(0, 1, "line2");
+static NexText line3 = NexText(0, 1, "line3");
+static NexText line4 = NexText(0, 1, "line4");
+static NexText line5 = NexText(0, 1, "line5");
+static NexText line6 = NexText(0, 1, "line6");
+static NexText line7 = NexText(0, 1, "line7");
+static NexText line8 = NexText(0, 1, "line8");
+static NexText line9 = NexText(0, 1, "line9");
+static NexText line10 = NexText(0, 1, "line10");
+static NexText line11 = NexText(0, 1, "line11");
+static NexText line12 = NexText(0, 1, "line12");
+static NexText line13 = NexText(0, 1, "line13");
+static NexText line14 = NexText(0, 1, "line14");
+static NexText line15 = NexText(0, 1, "line15");
+static NexText line16 = NexText(0, 1, "line16");
+static NexText line17 = NexText(0, 1, "line17");
 
-NexText lcdLines[18] = {
+static NexText lcdLines[18] = {
     line0, line1, line2, line3, line4,
     line5, line6, line7, line8, line9,
     line10, line11, line12, line13, line14,
     line15, line16, line17
 };
 
-char displayLines[17][60] = {0};
-uint8_t lineNumber = 0;
+static char displayLines[17][60] = {0};
+static int lineNumber = 0;
 
 void displaySaveLines(){
-    for(uint8_t i = 0; i <=17; i++){
+    for(int i = 0; i <=17; i++){
         lcdLines[i].getText(displayLines[i], 60);
     }
 }
 
 void displayLoadLines(){
     char temp[20];    
-    for(uint8_t i = 0; i <=17; i++){
+    for(int i = 0; i <=17; i++){
         sprintf(temp, "line%d.txt=\"\"", i);
         sendCommand(temp);
         lcdLines[i].setText(displayLines[i]);
     }
 }
 
-void displayScroolUp(){
+void displayScrollUp(){
     char actualLine[30] = {0};
 
-    for(uint8_t i = 0; i <=17; i++){
+    for(int i = 0; i <=17; i++){
         sprintf(actualLine, "line%d.txt=line%d.txt", i, i+1);
         sendCommand(actualLine);
     }
@@ -69,8 +69,7 @@ void displayPrintf(char *fmt, ...){
 	}
 
     if(lineNumber == 18){
-        displayScroolUp();
+        displayScrollUp();
 		lineNumber = 17;
     }
 }
-
