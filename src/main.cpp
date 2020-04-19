@@ -1,20 +1,18 @@
 #include <Arduino.h>
-#include "Nextion.h"
 #include "keyboard.h"
-#include "display.h"
 #include "USBHost_t36.h"
 
 USBHost myusb;
 KeyboardController keyboard(myusb);
 
 void setup() {
-    nexInit();
 	Serial.begin(9600);
+	Serial1.begin(250000);
 	myusb.begin();
 	keyboard.attachPress(PressKey);
 
-	displayPrintf("Ponyxis kernel %s\n",VERSION);
-	displayPrintf(">");
+    Serial1.printf("Ponyxis kernel %s\n",VERSION);
+    Serial1.printf(">");
 }
 
 void loop() {

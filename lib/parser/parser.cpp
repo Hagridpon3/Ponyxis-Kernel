@@ -1,5 +1,4 @@
 #include "parser.h"
-#include "display.h"
 
 static char parseArray[4][60];
 
@@ -15,18 +14,18 @@ void parserParse(char input[60]){
 
         switch(parserGetCmdId(parseArray[0])){
             case CMD_NOT_FOUND:
-                displayPrintf("%s :command not found :(\n", parseArray[0]);
+                Serial1.printf("%s :command not found :(\n", parseArray[0]);
                 eraseParserArray();
                 break;
             case CMD_INFO:
-                displayPrintf("Author: Ponyxis\n");
-                displayPrintf("Version: %s\n", VERSION);
-                displayPrintf("Platform: Teensy 4.0\n");
-                displayPrintf(("USB Host support now!\n"));
+                Serial1.printf("Author: Ponyxis\n");
+                Serial1.printf("Version: %s\n", VERSION);
+                Serial1.printf("Platform: Teensy 4.0\n");
+                Serial1.printf(("USB Host support now!\n"));
                 eraseParserArray();
                 break;
             case CMD_HELP:
-                displayPrintf("help screen work :)\n");
+                Serial1.printf("help screen work :)\n");
                 eraseParserArray();
                 break;
             case CMD_BEEP:
@@ -37,7 +36,7 @@ void parserParse(char input[60]){
                 if(freq > 0 && dur > 0){
                     tone(2, freq, dur);
                 }else{
-                    displayPrintf("please enter freq or dur bigger than zero\n");
+                    Serial1.printf("please enter frequency or duration bigger than zero\n");
                 }
 
                 eraseParserArray();
