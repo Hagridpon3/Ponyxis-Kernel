@@ -1,6 +1,8 @@
 #include "parser.h"
+#include "lvgl.h"
 
 static char parseArray[4][60];
+extern lv_obj_t * console;
 
 void eraseParserArray(){
     memset(parseArray[0], 0x00, 60);
@@ -18,10 +20,9 @@ void parserParse(char input[60]){
                 eraseParserArray();
                 break;
             case CMD_INFO:
-                Serial1.printf("Author: Ponyxis\n");
-                Serial1.printf("Version: %s\n", VERSION);
-                Serial1.printf("Platform: Teensy 4.0\n");
-                Serial1.printf(("USB Host support now!\n"));
+                lv_ta_add_text(console, "Author: Ponyxis\n");
+                lv_ta_add_text(console, "Platform: Teensy 4.0\n");
+                lv_ta_add_text(console, "Now with LittlevGL engine");
                 eraseParserArray();
                 break;
             case CMD_HELP:
