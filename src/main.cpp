@@ -5,7 +5,6 @@
 
 USBHost myusb;
 KeyboardController keyboard(myusb);
-//RA8875 tft = RA8875(RA8875_CS, NULL);//Teensy
 
 void setup() {
     Serial.begin(115200);
@@ -13,13 +12,11 @@ void setup() {
 
     display_hw_init();
     display_gl_init();
-    display_gl_touch_init();
+    display_gl_keypad_init();
     display_ui_draw();
 
     keyboard.attachPress(PressKey);
 
-    Serial1.printf("Ponyxis kernel v%s\n", VERSION);
-    Serial1.printf(">");
 }
 
 void loop() {

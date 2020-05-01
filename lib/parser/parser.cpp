@@ -26,7 +26,7 @@ void parserParse(char input[60]){
                 eraseParserArray();
                 break;
             case CMD_HELP:
-                Serial1.printf("help screen work :)\n");
+                lv_ta_add_text(console,"help screen work :)");
                 eraseParserArray();
                 break;
             case CMD_BEEP:
@@ -37,7 +37,7 @@ void parserParse(char input[60]){
                 if(freq > 0 && dur > 0){
                     tone(2, freq, dur);
                 }else{
-                    Serial1.printf("please enter frequency or duration bigger than zero\n");
+                    lv_ta_add_text(console,"please enter frequency or duration bigger than zero");
                 }
 
                 eraseParserArray();
